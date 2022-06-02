@@ -6,21 +6,20 @@
 const caesarModule = (function () {
   
   function _newLetter(utfCode){
-    if(utfCode < 97) utfCode += 26;         //"loop back" for end-of-alphabet chars
+    if(utfCode < 97) utfCode += 26;         //"loops back" for end-of-alphabet chars
     if(utfCode > 122) utfCode -= 26;
-      return String.fromCharCode(utfCode)   //return new letter
+      return String.fromCharCode(utfCode)   //returns new letter
   }
 
   function caesar(input, shift, encode = true) {
 
     if(!shift || shift > 25 || shift < -25) return false
     
-    //variables to use in loop
     let message = input.toLowerCase()
     let secretMsg = "";
     let shiftSwitch = encode ? shift : shift * -1;     //preps loop to encode or decode 
     
-    //loop builds shifted message
+    //builds shifted message
     for(let char of message){    
       if(char.charCodeAt(0) > 96 && char.charCodeAt(0) < 123){
         let newUtfCode = char.charCodeAt(0) + shiftSwitch  //gets new UTF-16 code

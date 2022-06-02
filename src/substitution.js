@@ -6,6 +6,7 @@
 const substitutionModule = (function () {
   const realAbc = "abcdefghijklmnopqrstuvwxyz";
 
+  //swaps letters, builds new message
   function _theSwapper(string, oldAbc, newAbc) {
     let secretMsg = "";
     for (let char of string) {
@@ -17,15 +18,15 @@ const substitutionModule = (function () {
 
   function substitution(input, abcCode, encode = true) {
     let message = input.toLowerCase();
-    if (!abcCode || abcCode.length !== 26) return false;
+    if (!abcCode || abcCode.length !== 26) return false; //checks code alphabet exists & is correct length
 
-    if (
+    if (                 //checks for duplicates in code alphabet
       !abcCode.split("").every((char) => {
         return abcCode.indexOf(char) === abcCode.lastIndexOf(char);
       })
     ) return false;
 
-    return encode
+    return encode       //delivers encoded or decoded message
       ? _theSwapper(message, realAbc, abcCode)
       : _theSwapper(message, abcCode, realAbc);
   }

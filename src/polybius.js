@@ -24,7 +24,7 @@ const polybiusModule = (function () {
     const message = input.toLowerCase()
     let secretMsg = "";
     if(encode){ //used for encoding
-      if (input.match(/^[A-Za-z\s]+$/) === null) return false; //check for non-alphas & non-spaces
+      if (input.match(/^[A-Za-z\s]+$/) === null) return false; //checks for non-alphas, non-spaces
       
       //converts letters into polybius pairs; preserves spacing
       for(let char of message){
@@ -34,10 +34,10 @@ const polybiusModule = (function () {
     }
     if(!encode){ //used for decoding
       const evenNumberLength = message.replaceAll(" ", "").length % 2 === 0 
-      if(!evenNumberLength) return false                  //length check
-      const spacedMsg = message.replaceAll(" ", "  ")     //double spaces, to get loop to work
+      if(!evenNumberLength) return false                  //checks length
+      const spacedMsg = message.replaceAll(" ", "  ")     //doubles spaces, to get loop to work
       
-      //build code pairs, match them to decoder, build message
+      //builds code pairs, matches them to decoder, build message
       for(let i = 0; i < spacedMsg.length; i+=2){         
         let codePair = spacedMsg[i] + spacedMsg[i+1]      
         let letter = decoder[codePair]

@@ -3,12 +3,13 @@ const substitutionModule = (function () {
 
   //swaps letters, builds new message
   function _theSwapper(string, oldAbc, newAbc) {
-    let secretMsg = "";
-    for (let char of string) {
+    let array = string.split("");
+    let secretArray = array.reduce((acc, char) => {
       let idxNum = oldAbc.indexOf(char);
-      char === " " ? (secretMsg += char) : (secretMsg += newAbc[idxNum]);
-    }
-    return secretMsg;
+      char === " " ? acc.push(char) : acc.push(newAbc[idxNum]);
+      return acc;
+    }, []);
+    return secretArray.join("");
   }
 
   function substitution(input, abcCode, encode = true) {
